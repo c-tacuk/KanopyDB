@@ -45,13 +45,18 @@ namespace KanopyDB
                 var itemprop = element.GetAttribute("itemprop");
                 if (itemprop == "actor")
                 {
-                    var name = element.InnerHtml.Substring(element.InnerHtml.IndexOf("content")+9);
-                    name = name.Substring(0, name.Length - 2);
+                    var name = GetNameFromHtmlString(element.InnerHtml);
                     hrefTags.Add(name);
                 }
-                    
             }
             return hrefTags;
+        }
+
+        public string GetNameFromHtmlString(string htmlString)
+        {
+            var name = htmlString.Substring(htmlString.IndexOf("content") + 9);
+            name = name.Substring(0, name.Length - 2);
+            return name;
         }
     }
 }
