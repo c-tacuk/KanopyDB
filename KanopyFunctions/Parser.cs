@@ -1,14 +1,13 @@
-﻿using AngleSharp.Browser;
-using AngleSharp.Dom;
+﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using RestSharp;
-using System.Xml.Linq;
+
 
 namespace KanopyDB
 {
     public class Parser
     {
-        string content { get; set; }
+        string content { get; set; } = "";
         public string GetHtmlData(string link)
         {
             var client = new RestClient(link);
@@ -49,9 +48,6 @@ namespace KanopyDB
         }
         public List<string> GetNamesOfTheRole(string link, string role) //actor, director, producer, author
         {
-            // <div class="" itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><a class=""
-            // itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
-            // <a class="" itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
             content = GetHtmlData(link);
             List<string> hrefTags = new List<string>();
             var parser = new HtmlParser();
@@ -69,9 +65,6 @@ namespace KanopyDB
         }
         public string GetCountry(string link) 
         {
-            // <div class="" itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><a class=""
-            // itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
-            // <a class="" itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
             content = GetHtmlData(link);
             List<string> hrefTags = new List<string>();
             var parser = new HtmlParser();
