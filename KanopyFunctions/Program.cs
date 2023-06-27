@@ -69,20 +69,20 @@ namespace Test
             //    Console.WriteLine(el);
 
 
-
             var parser = new Parser();
             var links = parser.GetLinksFromHtml("https://kino.mail.ru/cinema/all/");
+            parser.GetCountry(links[0]);
             //foreach (var link in links)
             //{
             //    Console.WriteLine(link);
             //}
-
-            //Console.WriteLine(parser.GetHtmlData(links[0]));
-            var actors = parser.GetActors(links[0]);
-            foreach (var actor in actors)
-            {
-                Console.WriteLine(actor);
-            }
+           // Console.WriteLine(parser.GetTitle(links[0]));
+           //Console.WriteLine(parser.GetHtmlData(links[0]));
+           // var actors = parser.GetNamesOfTheRole(links[0], "actor");
+           // foreach (var actor in actors)
+           // {
+           //     Console.WriteLine(actor);
+           //}
         }
         
     }

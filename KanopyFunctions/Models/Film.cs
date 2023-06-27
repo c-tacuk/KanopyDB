@@ -10,10 +10,10 @@
         public List<string> Genres { get; set; }
         public List<Actor> Actors { get; set; }
         public List<Producer> Producers { get; set; }
-        public List<Screenwriter> Screenwriters { get; set; }
+        public List<Author> Screenwriters { get; set; }
 
         public Film(string name, int premiereDate, string country, Director director, List<string> genres,
-            List<Actor> actors, List<Producer> producers, List<Screenwriter> screenwriters) 
+            List<Actor> actors, List<Producer> producers, List<Author> screenwriters) 
         {
             Name = name;
             PremiereDate = premiereDate;

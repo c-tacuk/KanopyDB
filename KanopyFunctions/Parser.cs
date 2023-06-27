@@ -31,7 +31,23 @@ namespace KanopyDB
             }
             return hrefTags;
         }
-        public List<string> GetActors(string link)
+        public string GetTitle(string link)
+        {
+            content = GetHtmlData(link);
+            List<string> hrefTags = new List<string>();
+            var parser = new HtmlParser();
+            var document = parser.ParseDocument(content);
+            foreach (IElement element in document.QuerySelectorAll("meta"))
+            {
+                var property = element.GetAttribute("property");
+                if (property == "mrc__share_title")
+                {
+                    return element.GetAttribute("content").Replace("«", "").Replace("»", "");
+                }
+            }
+            return "";
+        }
+        public List<string> GetNamesOfTheRole(string link, string role) //actor, director, producer, author
         {
             // <div class="" itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><a class=""
             // itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
@@ -43,7 +59,7 @@ namespace KanopyDB
             foreach (IElement element in document.QuerySelectorAll("div"))
             {
                 var itemprop = element.GetAttribute("itemprop");
-                if (itemprop == "actor")
+                if (itemprop == role)
                 {
                     var name = GetNameFromHtmlString(element.InnerHtml);
                     hrefTags.Add(name);
@@ -51,7 +67,26 @@ namespace KanopyDB
             }
             return hrefTags;
         }
-
+        public string GetCountry(string link) 
+        {
+            // <div class="" itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><a class=""
+            // itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
+            // <a class="" itemprop="url" href="/person/629975_tom_holland/"></a><meta class="" itemprop="name" content="Том Холланд"/></div>
+            content = GetHtmlData(link);
+            List<string> hrefTags = new List<string>();
+            var parser = new HtmlParser();
+            var document = parser.ParseDocument(content);
+            foreach (IElement element in document.QuerySelectorAll("a"))
+            {
+                var href = element.GetAttribute("href");
+                if (href != null && href.Contains("/cinema/all"))
+                {
+                    Console.WriteLine(element.TextContent);
+                }
+                    
+            }
+            return "";
+        }
         public string GetNameFromHtmlString(string htmlString)
         {
             var name = htmlString.Substring(htmlString.IndexOf("content") + 9);
