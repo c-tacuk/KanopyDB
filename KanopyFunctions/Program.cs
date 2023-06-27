@@ -1,4 +1,6 @@
-﻿using AngleSharp.Dom;
+﻿using Amazon.Auth.AccessControlPolicy;
+using AngleSharp.Common;
+using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using KanopyDB;
 using KanopyDB.Models;
@@ -17,8 +19,8 @@ namespace Test
         {
             // https://www.mongodb.com/developer/languages/csharp/csharp-crud-tutorial/ - документация по работе с БД
             //const string connectionUri = "mongodb+srv://root:root@atlascluster.azkpkbd.mongodb.net/";
-            //var client = new MongoClient(connectionUri);
-            //var database = client.GetDatabase("KanopyDB");
+            //var mongoClient = new MongoClient(connectionUri);
+            //var database = mongoClient.GetDatabase("KanopyDB");
             //var collectionFilms = database.GetCollection<BsonDocument>("Films");
             //var collectionDirectors = database.GetCollection<BsonDocument>("Directors");
             //var collectionActors = database.GetCollection<BsonDocument>("Actors");
@@ -66,15 +68,20 @@ namespace Test
             //foreach (var el in allFilms)
             //    Console.WriteLine(el);
 
-            var clientt = new RestClient($"https://kino.mail.ru/cinema/all/");
-            clientt.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = clientt.Execute(request);
+
+
             var parser = new Parser();
-            var links = parser.GetLinks(response.Content);
-            foreach (var link in links)
+            var links = parser.GetLinksFromHtml("https://kino.mail.ru/cinema/all/");
+            //foreach (var link in links)
+            //{
+            //    Console.WriteLine(link);
+            //}
+
+            //Console.WriteLine(parser.GetHtmlData(links[0]));
+            var actors = parser.GetActors(links[0]);
+            foreach (var actor in actors)
             {
-                Console.WriteLine(link);
+                Console.WriteLine(actor);
             }
         }
         
