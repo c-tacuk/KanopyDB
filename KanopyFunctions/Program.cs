@@ -1,9 +1,13 @@
-﻿using KanopyDB.Models;
+﻿using AngleSharp.Dom;
+using AngleSharp.Html.Parser;
+using KanopyDB;
+using KanopyDB.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using RestSharp;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Xml.Linq;
 
 namespace Test
 {
@@ -62,16 +66,17 @@ namespace Test
             //foreach (var el in allFilms)
             //    Console.WriteLine(el);
 
-
-            for (int i = 0; i < 1200; i++)
+            var clientt = new RestClient($"https://kino.mail.ru/cinema/all/");
+            clientt.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = clientt.Execute(request);
+            var parser = new Parser();
+            var links = parser.GetLinks(response.Content);
+            foreach (var link in links)
             {
-                var page = i;
-                var clientt = new RestClient($"https://kino.mail.ru/cinema/all/?page={page}");
-                clientt.Timeout = -1;
-                var request = new RestRequest(Method.GET);
-                IRestResponse response = clientt.Execute(request);
-                Console.WriteLine(response.Content);
+                Console.WriteLine(link);
             }
         }
+        
     }
 }

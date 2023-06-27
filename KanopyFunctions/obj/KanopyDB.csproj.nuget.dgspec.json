@@ -44,6 +44,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.20.0, )"
