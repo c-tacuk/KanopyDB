@@ -930,9 +930,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\KanopyDB.csproj",
-      "projectName": "KanopyDB",
-      "projectPath": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\KanopyDB.csproj",
+      "projectUniqueName": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\KanopyFunctions.csproj",
+      "projectName": "KanopyFunctions",
+      "projectPath": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\KanopyFunctions.csproj",
       "packagesPath": "C:\\Users\\DlyaS\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\obj\\",
       "projectStyle": "PackageReference",

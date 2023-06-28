@@ -1,4 +1,4 @@
-﻿namespace KanopyDB.Models
+﻿namespace KanopyFunctions.Models
 {
     public class Actor
     {
@@ -6,12 +6,5 @@
         public string Name { get; set; }
         public int Age { get; set; }
         public List<string> Films { get; set; }
-
-        public Actor(string name, int age, List<string> films) 
-        {
-            Name = name;
-            Age = age;
-            Films = films;
-        }
     }
 }

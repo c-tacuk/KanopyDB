@@ -1,15 +1,5 @@
-﻿using Amazon.Auth.AccessControlPolicy;
-using AngleSharp.Common;
-using AngleSharp.Dom;
-using AngleSharp.Html.Parser;
-using KanopyDB;
-using KanopyDB.Models;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using RestSharp;
-using System.Collections.Generic;
-using System.Text.Json;
-using System.Xml.Linq;
+﻿using KanopyFunctions;
+
 
 namespace Test
 {
@@ -68,21 +58,56 @@ namespace Test
             //foreach (var el in allFilms)
             //    Console.WriteLine(el);
 
-
+            // #watch
             var parser = new Parser();
-            var links = parser.GetLinksFromHtml("https://kino.mail.ru/cinema/all/");
-            parser.GetCountry(links[0]);
+            var links = parser.GetLinks("https://kino.mail.ru/cinema/all/");
+            //Console.WriteLine(parser.GetCountry(links[0]));
             //foreach (var link in links)
             //{
             //    Console.WriteLine(link);
             //}
-           // Console.WriteLine(parser.GetTitle(links[0]));
-           //Console.WriteLine(parser.GetHtmlData(links[0]));
-           // var actors = parser.GetNamesOfTheRole(links[0], "actor");
-           // foreach (var actor in actors)
-           // {
-           //     Console.WriteLine(actor);
-           //}
+            //Console.WriteLine(parser.GetTitle(links[0]));
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine($"Фильм {i+1}:");
+                var film = parser.GetFilmFromHtmlData(links[i]);
+                Console.WriteLine("Название:" + " " + film.Name);
+                Console.WriteLine("Премьера:" + " " + film.PremiereDate);
+                Console.WriteLine("Старана:" + " " + film.Country);
+                Console.WriteLine("Возрастное ограничение:" + " " + film.AgeRestriction);
+                Console.WriteLine("Режиссер:" + " " + film.Director);
+                var genres = "";
+                foreach (var genre in film.Genres)
+                {
+                    genres += genre + ", ";
+                }
+                var actors = "";
+                foreach (var actor in film.Actors)
+                {
+                    actors += actor + ", ";
+                }
+                var producers = "";
+                foreach (var producer in film.Producers)
+                {
+                    producers += producer + ", ";
+                }
+                var authors = "";
+                foreach (var author in film.Authors)
+                {
+                    authors += author + ", ";
+                }
+                Console.WriteLine("Жанры:" + " " + genres.Substring(0, genres.Length - 2));
+                Console.WriteLine("Актеры:" + " " + actors.Substring(0, actors.Length - 2));
+                Console.WriteLine("Продюсеры:" + " " + producers.Substring(0, producers.Length - 2));
+                Console.WriteLine("Сценаристы:" + " " + authors.Substring(0, authors.Length - 2));
+                Console.WriteLine($"\n\n\n\n\n");
+            }
+            //Console.WriteLine(parser.GetHtmlData(links[3]));
+            // var actors = parser.GetNamesOfTheRole(links[0], "actor");
+            // foreach (var actor in actors)
+            // {
+            //     Console.WriteLine(actor);
+            //}
         }
         
     }

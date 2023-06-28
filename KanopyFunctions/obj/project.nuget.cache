@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YT2KhHE9TtFNFEsOzYFgvzVxakDNfR2kUJxOtG9k0WA1sVhfGO7LZA5d2OsoDwIv25Qh95k47rNWKJOtBaYtGA==",
+  "dgSpecHash": "xqBkqwHgLd/GzI8RCs70F/PNTdBsngZczLjTV16KOAeB5BB3sTfhgonE/6NJ/qXAjrlgEli2QMmVLZ08Q15KUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\KanopyDB.csproj",
+  "projectFilePath": "C:\\Users\\DlyaS\\Desktop\\Всё\\C#\\KanopyDB\\KanopyFunctions\\KanopyFunctions.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DlyaS\\.nuget\\packages\\anglesharp\\1.0.4\\anglesharp.1.0.4.nupkg.sha512",
     "C:\\Users\\DlyaS\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
