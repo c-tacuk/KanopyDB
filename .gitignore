@@ -1,0 +1,10 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+*.vsidx
+/.vs/Kanopy/FileContentIndex/65e205ce-0bea-4510-9933-c3f5de84ffbd.vsidx
+/.vs/Kanopy/FileContentIndex/4aa56132-312f-479f-a8d1-f08b9de0b8b3.vsidx
+/.vs/Kanopy/FileContentIndex/89c2f02b-f3d0-4b76-b9d6-4a510531531e.vsidx
+/.vs/Kanopy/FileContentIndex/cae272ae-a2b2-47f9-90e9-03c8d298a084.vsidx
+*.wsuo
