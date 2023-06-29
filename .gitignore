@@ -15,3 +15,9 @@
 /KanopyFunctions/obj/Debug/net7.0/refint/KanopyFunctions.dll
 /KanopyFunctions/obj/Debug/net7.0/KanopyFunctions.dll
 /KanopyFunctions/obj/Debug/net7.0/KanopyFunctions.pdb
+/.vs/ProjectEvaluation/kanopy.metadata.v5.2
+/.vs/Kanopy/DesignTimeBuild/.dtbcache.v2
+/.vs/Kanopy/v17/.futdcache.v2
+/.vs/ProjectEvaluation/kanopy.projects.v5.2
+*.json
+/KanopyFunctions/obj/Debug/net7.0/KanopyFunctions.csproj.CoreCompileInputs.cache
