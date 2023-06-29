@@ -8,3 +8,10 @@
 /.vs/Kanopy/FileContentIndex/89c2f02b-f3d0-4b76-b9d6-4a510531531e.vsidx
 /.vs/Kanopy/FileContentIndex/cae272ae-a2b2-47f9-90e9-03c8d298a084.vsidx
 *.wsuo
+/.vs/Kanopy/v17/.suo
+/KanopyFunctions/bin/Debug/net7.0/KanopyFunctions.dll
+/KanopyFunctions/bin/Debug/net7.0/KanopyFunctions.pdb
+/KanopyFunctions/obj/Debug/net7.0/ref/KanopyFunctions.dll
+/KanopyFunctions/obj/Debug/net7.0/refint/KanopyFunctions.dll
+/KanopyFunctions/obj/Debug/net7.0/KanopyFunctions.dll
+/KanopyFunctions/obj/Debug/net7.0/KanopyFunctions.pdb
