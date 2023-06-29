@@ -24,9 +24,9 @@ namespace KanopyFunctions
             {
                 Name = GetTitle(link),
                 PremiereDate = GetPremierDate(link),
-                Country = GetCountry(link),
+                Countries = GetCountries(link),
                 AgeRestriction = GetAgeRestriction(link),
-                Director = GetNamesOfTheRole(link, "director")[0],
+                Directors = GetNamesOfTheRole(link, "director"),
                 Actors = GetNamesOfTheRole(link, "actor"),
                 Producers = GetNamesOfTheRole(link, "producer"),
                 Authors = GetNamesOfTheRole(link, "author"),
@@ -53,30 +53,35 @@ namespace KanopyFunctions
             content = GetHtmlData(link);
             var parser = new HtmlParser();
             var document = parser.ParseDocument(content);
-            foreach (IElement element in document.QuerySelectorAll("meta"))
+            foreach (IElement element in document.QuerySelectorAll("div"))
             {
-                var property = element.GetAttribute("property");
-                if (property == "mrc__share_title")
+                var cl = element.GetAttribute("class");
+                if (cl == "hidden")
                 {
-                    var strartInd = element.GetAttribute("content").IndexOf("«") + 1;
-                    var endInd = element.GetAttribute("content").IndexOf("»") - 1;
-                    return element.GetAttribute("content").Substring(strartInd, endInd);
+                    foreach (IElement metaEl in element.QuerySelectorAll("meta"))
+                    {
+                        var itemprop = metaEl.GetAttribute("itemprop");
+                        if (itemprop == "name")
+                        {
+                            return metaEl.GetAttribute("content");
+                        }
+                    }
                 }
             }
             return "";
-        }//17
+        }
         public string GetPremierDate(string link)
         {
             content = GetHtmlData(link);
             var parser = new HtmlParser();
             var document = parser.ParseDocument(content);
-            foreach (IElement element in document.QuerySelectorAll("meta"))
+            foreach (IElement element in document.QuerySelectorAll("div"))
             {
-                var property = element.GetAttribute("property");
-                if (property == "mrc__share_title")
+                var cl = element.GetAttribute("class");
+                if (cl == "margin_bottom_20")
                 {
-                    var strartInd = element.GetAttribute("content").IndexOf("»") + 2;
-                    return element.GetAttribute("content").Substring(strartInd).Replace("(", "").Replace(")", "").Substring(0, 4);
+                    var span = element.QuerySelector("span");
+                    return span.QuerySelector("a").TextContent;
                 }
             }
             return "";
@@ -87,12 +92,20 @@ namespace KanopyFunctions
             var filmGenres = new List<string>();
             var parser = new HtmlParser();
             var document = parser.ParseDocument(content);
-            foreach (IElement element in document.QuerySelectorAll("span"))
+            foreach (IElement element in document.QuerySelectorAll("div"))
             {
                 var cl = element.GetAttribute("class");
-                if (cl == "badge__text" && genres.Contains(element.TextContent))
+                if (cl == "hidden")
                 {
-                    filmGenres.Add(element.TextContent);
+                    foreach (IElement metaEl in element.QuerySelectorAll("meta"))
+                    {
+                        var itemprop = metaEl.GetAttribute("itemprop");
+                        if (itemprop == "genre")
+                        {
+                            filmGenres = metaEl.GetAttribute("content").Split(',').ToList();
+                            return filmGenres;
+                        }
+                    }
                 }
             }
             return filmGenres;
@@ -100,22 +113,28 @@ namespace KanopyFunctions
         public List<string> GetNamesOfTheRole(string link, string role) //actor, director, producer, author
         {
             content = GetHtmlData(link);
-            List<string> hrefTags = new List<string>();
+            List<string> persons = new List<string>();
             var parser = new HtmlParser();
             var document = parser.ParseDocument(content);
             foreach (IElement element in document.QuerySelectorAll("div"))
             {
-                var itemprop = element.GetAttribute("itemprop");
-                var href = element.QuerySelector("a");
-                if (itemprop == role && href != null)
-                { 
-                    var name = element.QuerySelector("meta").GetAttribute("content");
-                    hrefTags.Add(name);
+                var cl = element.GetAttribute("class");
+                if (cl == "hidden")
+                {
+                    foreach (IElement secondaryEl in element.QuerySelectorAll("div"))
+                    {
+                        var itemprop = secondaryEl.GetAttribute("itemprop");
+                        if (itemprop == role)
+                        {
+                            persons.Add(secondaryEl.QuerySelector("meta").GetAttribute("content"));
+                        }
+                    }
+                    return persons;
                 }
             }
-            return hrefTags;
+            return persons;
         }
-        public string GetCountry(string link)
+        public List<string> GetCountries(string link)
         {
             content = GetHtmlData(link);
             var parser = new HtmlParser();
@@ -127,10 +146,10 @@ namespace KanopyFunctions
                 var text = element.TextContent;
                 if (text == "Страна")
                 {
-                    return document.QuerySelectorAll("span")[i + 1].TextContent; 
+                    return document.QuerySelectorAll("span")[i + 1].TextContent.Split(',').ToList(); 
                 }
             }            
-            return "";
+            return null;
         }
         public string GetAgeRestriction(string link) 
         {

@@ -69,17 +69,25 @@ namespace Test
             //Console.WriteLine(parser.GetTitle(links[0]));
             for (int i = 0; i < 4; i++)
             {
-                Console.WriteLine($"Фильм {i+1}:");
+                Console.WriteLine($"Фильм {i + 1}:");
                 var film = parser.GetFilmFromHtmlData(links[i]);
                 Console.WriteLine("Название:" + " " + film.Name);
                 Console.WriteLine("Премьера:" + " " + film.PremiereDate);
-                Console.WriteLine("Старана:" + " " + film.Country);
                 Console.WriteLine("Возрастное ограничение:" + " " + film.AgeRestriction);
-                Console.WriteLine("Режиссер:" + " " + film.Director);
                 var genres = "";
                 foreach (var genre in film.Genres)
                 {
                     genres += genre + ", ";
+                }
+                var counties = "";
+                foreach (var country in film.Countries)
+                {
+                    counties += country + ", ";
+                }
+                var directors = "";
+                foreach (var dir in film.Directors)
+                {
+                    directors += dir + ", ";
                 }
                 var actors = "";
                 foreach (var actor in film.Actors)
@@ -96,13 +104,15 @@ namespace Test
                 {
                     authors += author + ", ";
                 }
+                Console.WriteLine("Страна:" + " " + counties.Substring(0, counties.Length - 2));
+                Console.WriteLine("Режиссер:" + " " + directors.Substring(0, directors.Length - 2));
                 Console.WriteLine("Жанры:" + " " + genres.Substring(0, genres.Length - 2));
                 Console.WriteLine("Актеры:" + " " + actors.Substring(0, actors.Length - 2));
                 Console.WriteLine("Продюсеры:" + " " + producers.Substring(0, producers.Length - 2));
                 Console.WriteLine("Сценаристы:" + " " + authors.Substring(0, authors.Length - 2));
                 Console.WriteLine($"\n\n\n\n\n");
             }
-            //Console.WriteLine(parser.GetHtmlData(links[3]));
+            //Console.WriteLine(parser.GetHtmlData(links[2]));
             // var actors = parser.GetNamesOfTheRole(links[0], "actor");
             // foreach (var actor in actors)
             // {
