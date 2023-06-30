@@ -62,8 +62,7 @@ namespace KanopyFunctions.Elements.Persons
             var personsId = new List<string>();
             foreach (var personLink in personsLinks)
             {
-                var startInd = personLink.IndexOf("person");
-                personsId.Add(personLink.Substring(startInd + 7).TrimEnd('/'));
+                personsId.Add(GetId(personLink));
             }
             return personsId;
         }

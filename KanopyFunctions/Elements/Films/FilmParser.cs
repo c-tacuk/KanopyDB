@@ -42,6 +42,11 @@ namespace KanopyFunctions.Elements.Films
             }
             return movieLinks;
         }
+        public string GetId(string filmLink)
+        {
+            var startInd = filmLink.IndexOf("movies");
+            return filmLink.Substring(startInd + 7).TrimEnd('/');
+        }
         public string GetTitle(string filmLink)
         {
             var document = sharedParser.GetHtmlDocument(filmLink);

@@ -65,7 +65,7 @@ namespace Test
             //Console.WriteLine(parser.GetCountry(links[0]));
             //foreach (var link in links)
             //{
-            //    Console.WriteLine(link);
+            //    Console.WriteLine(parser.GetId(link));
             //}
             //Console.WriteLine(parser.GetTitle(links[0]));
             for (int i = 0; i < 4; i++)
