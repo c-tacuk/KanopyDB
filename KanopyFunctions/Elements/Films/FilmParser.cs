@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Dom;
+using KanopyFunctions.Elements.Persons;
 using KanopyFunctions.Elements.Shared;
 using KanopyFunctions.Models;
 
@@ -8,6 +9,7 @@ namespace KanopyFunctions.Elements.Films
     public class FilmParser
     {
         Parser sharedParser = new Parser();
+        PersonParser personParser = new PersonParser();
         public string GetHtmlData(string link)
         {
             return sharedParser.GetHtmlData(link);
@@ -20,10 +22,10 @@ namespace KanopyFunctions.Elements.Films
                 PremiereDate = GetPremierDate(filmLink),
                 Countries = GetCountries(filmLink),
                 AgeRestriction = GetAgeRestriction(filmLink),
-                Directors = GetNamesOfTheRole(filmLink, Roles.director),
-                Actors = GetNamesOfTheRole(filmLink, Roles.actor),
-                Producers = GetNamesOfTheRole(filmLink, Roles.producer),
-                Authors = GetNamesOfTheRole(filmLink, Roles.author),
+                DirectorsId = personParser.GetAllId(filmLink, Roles.director),
+                ActorsId = personParser.GetAllId(filmLink, Roles.actor),
+                ProducersId = personParser.GetAllId(filmLink, Roles.producer),
+                AuthorsId = personParser.GetAllId(filmLink, Roles.author),
                 Genres = GetGenresOfTheFilm(filmLink)
             };
             return film;

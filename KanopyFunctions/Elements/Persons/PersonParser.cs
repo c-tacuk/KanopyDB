@@ -51,5 +51,21 @@ namespace KanopyFunctions.Elements.Persons
             }
             return "";
         }
+        public string GetId(string personLink)
+        {
+            var startInd = personLink.IndexOf("person");
+            return personLink.Substring(startInd + 7).TrimEnd('/');
+        }
+        public List<string> GetAllId(string filmLink, Roles role)
+        {
+            var personsLinks = GetLinks(filmLink, role);
+            var personsId = new List<string>();
+            foreach (var personLink in personsLinks)
+            {
+                var startInd = personLink.IndexOf("person");
+                personsId.Add(personLink.Substring(startInd + 7).TrimEnd('/'));
+            }
+            return personsId;
+        }
     }
 }
