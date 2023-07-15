@@ -18,6 +18,7 @@ namespace KanopyFunctions.Elements.Films
         {
             var film = new Film()
             {
+                Id = GetId(filmLink),
                 Name = GetTitle(filmLink),
                 PremiereDate = GetPremierDate(filmLink),
                 Countries = GetCountries(filmLink),
