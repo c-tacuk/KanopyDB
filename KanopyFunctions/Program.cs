@@ -1,7 +1,4 @@
-﻿using AngleSharp.Dom;
-using KanopyFunctions.Elements.Films;
-using KanopyFunctions.Elements.Persons;
-using KanopyFunctions.Elements.Shared;
+﻿using KanopyFunctions.Elements.Films;
 using KanopyFunctions.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;

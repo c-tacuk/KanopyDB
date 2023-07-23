@@ -1,8 +1,5 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Html.Parser;
 using KanopyFunctions.Elements.Shared;
-using RestSharp;
-using System.Data;
 
 
 namespace KanopyFunctions.Elements.Persons
