@@ -21,11 +21,10 @@ namespace Test
             var films = new List<Film>();
             var parser = new FilmParser();
             var links = parser.GetLinks("https://kino.mail.ru/cinema/all/");
-            for (int i = 1; i < 6; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var film = parser.GetFilmFromHtmlData(links[i]);
                 films.Add(film);
-                var countries = film.Countries.AsEnumerable();
                 var addingFilm = new BsonDocument
             {
                 { "film_id", film.Id },
@@ -42,7 +41,7 @@ namespace Test
                 }
             };
                 collectionFilms.InsertOne(addingFilm);
-                Console.WriteLine(i);
+                Console.WriteLine("Film added");
             }
         }
     }
